@@ -65,7 +65,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     app:contentColor="@android:color/white"
-                                    app:textSize="14sp" />
+                                    app:ccpTextSize="14sp" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -86,7 +86,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     app:contentColor="@android:color/white"
-                                    app:textSize="16sp" />
+                                    app:ccpTextSize="16sp" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -128,7 +128,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     app:contentColor="@android:color/white"
-                                    app:textSize="20sp" />
+                                    app:ccpTextSize="20sp" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -150,7 +150,7 @@
                                     android:layout_height="wrap_content"
                                     app:contentColor="@android:color/white"
 
-                                    app:textSize="22sp" />
+                                    app:ccpTextSize="22sp" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -171,7 +171,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     app:contentColor="@android:color/white"
-                                    app:textSize="24sp" />
+                                    app:ccpTextSize="24sp" />
 
                                 <TextView
                                     android:layout_width="match_parent"

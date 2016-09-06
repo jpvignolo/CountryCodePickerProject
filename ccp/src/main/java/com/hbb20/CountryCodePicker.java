@@ -37,6 +37,11 @@ public class CountryCodePicker extends RelativeLayout {
     final static int LANGUAGE_PORTUGUESE = 11;
     final static int LANGUAGE_RUSSIAN = 12;
     final static int LANGUAGE_SPANISH = 13;
+
+    //this name should match value of enum <attr name="parenthesisPosition" format="enum"> from attrs
+    final static int PARENTHESIS_FIRST = 1;
+    final static int PARENTHESIS_SECOND = 2;
+
     static String TAG = "CCP";
     static String BUNDLE_SELECTED_CODE = "selectedCode";
     static int LIB_DEFAULT_COUNTRY_CODE = 91;
@@ -53,6 +58,8 @@ public class CountryCodePicker extends RelativeLayout {
     Country defaultCountry;
     CountryCodePicker codePicker;
     boolean hideNameCode=false;
+    boolean fullNameCode=false;
+    int parenthesisPos = PARENTHESIS_SECOND;
     int contentColor;
     List<Country> preferredCountries;
     //this will be "AU,IN,US"
@@ -111,6 +118,12 @@ public class CountryCodePicker extends RelativeLayout {
             //hide nameCode. If someone wants only phone code to avoid name collision for same country phone code.
             hideNameCode=a.getBoolean(R.styleable.CountryCodePicker_hideNameCode,false);
 
+            //Display fulll country name instead of two characters code
+            fullNameCode=a.getBoolean(R.styleable.CountryCodePicker_fullNameCode,false);
+
+            //Change position of the parenthesis eg : FR (+33) / (FR) +33
+            parenthesisPos=a.getInt(R.styleable.CountryCodePicker_parenthesisPosition,PARENTHESIS_SECOND);
+
             //autopop keyboard
             setKeyboardAutoPopOnSearch(a.getBoolean(R.styleable.CountryCodePicker_keyboardAutoPopOnSearch,true));
 
@@ -166,7 +179,7 @@ public class CountryCodePicker extends RelativeLayout {
             }
 
             //text size
-            int textSize = a.getDimensionPixelSize(R.styleable.CountryCodePicker_textSize, 0);
+            int textSize = a.getDimensionPixelSize(R.styleable.CountryCodePicker_ccpTextSize, 0);
             if (textSize > 0) {
                 textView_selectedCountry.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
                 setArrowSize(textSize);
@@ -220,7 +233,19 @@ public class CountryCodePicker extends RelativeLayout {
         }
 
         if(!hideNameCode) {
-            textView_selectedCountry.setText("(" + selectedCountry.getNameCode().toUpperCase() + ")  +" + selectedCountry.getPhoneCode());
+            if (!fullNameCode) {
+                if (parenthesisPos == PARENTHESIS_FIRST) {
+                    textView_selectedCountry.setText(selectedCountry.getNameCode().toUpperCase() + "  (+" + selectedCountry.getPhoneCode()+")");
+                }else {
+                    textView_selectedCountry.setText("(" + selectedCountry.getNameCode().toUpperCase() + ")  +" + selectedCountry.getPhoneCode());
+                }
+            }else{
+                if (parenthesisPos == PARENTHESIS_FIRST) {
+                    textView_selectedCountry.setText(selectedCountry.getName() + "  (+" + selectedCountry.getPhoneCode()+")");
+                }else{
+                    textView_selectedCountry.setText("(" + selectedCountry.getName() + ")  +" + selectedCountry.getPhoneCode());
+                }
+            }
         }else{
             textView_selectedCountry.setText("+" + selectedCountry.getPhoneCode());
         }
