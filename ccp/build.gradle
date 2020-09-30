@@ -27,11 +27,11 @@ ext {
 
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
 
     defaultConfig {
-        minSdkVersion 9
-        targetSdkVersion 25
+        minSdkVersion 21
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
     }
@@ -46,13 +46,14 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     ext {
-        support_library_version = '25.3.1'
+        support_library_version = '26.4.0'
         google_play_services_version = '10.2.0'
     }
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile "com.android.support:appcompat-v7:${support_library_version}"
+    compile "com.android.support:appcompat-v7:26.4.0"
     compile "com.android.support:recyclerview-v7:${support_library_version}"
     compile "com.android.support:support-v4:${support_library_version}"
 }
